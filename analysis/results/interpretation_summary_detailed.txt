@@ -1,0 +1,6 @@
+A one-way repeated-measures ANOVA revealed a significant effect of task on subjective workload (NASA‑TLX), F(2,48) = 63.27, p = 3.5e-14.
+
+                   pair  n          t  p_uncorrected  mean_diff        dz       p_holm  reject_holm
+  T1_form vs T2_product 25  -4.254716   2.763286e-04    -14.076 -0.850943 2.763286e-04         True
+   T1_form vs T3_travel 25 -15.868977   3.165501e-14    -35.000 -3.173795 9.496502e-14         True
+T2_product vs T3_travel 25  -5.673418   7.645518e-06    -20.924 -1.134684 1.529104e-05         True

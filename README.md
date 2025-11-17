@@ -57,3 +57,39 @@ python run_all.py
 python run_all.py --no-search
 # to run with 4 parallel jobs for grid search:
 python run_all.py --do-search --n-jobs 4
+
+## 📊 Key Cognitive Load Insights
+
+This repository includes a full behavioral + ML analysis of cognitive load across:
+
+Task 1 (Form Entry, low load)
+
+Task 2 (Product Exploration, medium load)
+
+Task 3 (Travel Planning, high load)
+
+🧠 Strongest Behavioral Indicators
+Feature	Influence
+scheduling_difficulty	🔥 strongest predictor
+constraint_violation_rate	very strong
+budget_management_stress	very strong
+multitasking_load	high
+drag_attempts	moderate–high
+
+These top features explained ~68% of subjective workload variance.
+
+🎯 Model Performance
+Metric	Score
+F1-score	0.82
+Accuracy	0.96
+ROC-AUC	0.94
+
+The tuned Random Forest can reliably classify high vs low cognitive load from behavior alone.
+
+📘 Full Report
+
+See:
+📄 /analysis/insights.md
+for complete diagrams, correlations, SHAP analysis, UX guidelines, and real-world validation.
+
+
