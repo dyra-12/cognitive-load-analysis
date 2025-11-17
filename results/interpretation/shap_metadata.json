@@ -1,0 +1,69 @@
+{
+  "generated_at": "2025-11-17T19:00:52.090133Z",
+  "random_state": 2025,
+  "n_samples": 75,
+  "n_features": 20,
+  "feature_names": [
+    "form_hesitation_index",
+    "form_error_rate",
+    "form_efficiency",
+    "zip_code_struggle",
+    "filter_optimization_score",
+    "decision_uncertainty",
+    "exploration_breadth",
+    "planning_time_ratio",
+    "multitasking_load",
+    "constraint_violation_rate",
+    "budget_management_stress",
+    "scheduling_difficulty",
+    "recovery_efficiency",
+    "action_density",
+    "idle_time_ratio",
+    "mouse_entropy_avg",
+    "rapid_hovers",
+    "drag_attempts",
+    "trait_skill",
+    "trait_cautious"
+  ],
+  "waterfall_indices": [
+    0,
+    10,
+    20
+  ],
+  "force_index": 0,
+  "pca": {
+    "n_components": 10,
+    "explained_variance_ratio": [
+      0.8905402828619723,
+      0.05069174577360921,
+      0.027881288134635716,
+      0.0075627187639446284,
+      0.005836777430872879,
+      0.004983118740838729,
+      0.0032059276175967827,
+      0.0027541499590224084,
+      0.0019210542405351133,
+      0.0014326448373791997
+    ]
+  },
+  "clustering": {
+    "chosen_k": 2,
+    "silhouette_score": 0.8026560458596229,
+    "cluster_counts": {
+      "0": 58,
+      "1": 17
+    }
+  },
+  "shap_values_shape": [
+    75,
+    20
+  ],
+  "files": {
+    "shap_summary_bar": "/content/mn/shap_summary_bar.png",
+    "shap_summary_beeswarm": "/content/mn/shap_summary_beeswarm.png",
+    "shap_values_npy": "/content/mn/shap_values_pos.npy",
+    "shap_clusters_assignments_csv": "/content/mn/shap_clusters_assignments.csv",
+    "shap_clusters_pca_png": "/content/mn/shap_clusters_pca.png",
+    "shap_cluster_centroids_json": "/content/mn/shap_cluster_centroids.json"
+  }
+}

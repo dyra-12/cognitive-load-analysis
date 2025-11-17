@@ -1,0 +1,23 @@
+2025-11-17 18:31:05,545 INFO: Generating ultra-realistic synthetic dataset...
+2025-11-17 18:31:05,604 INFO: Saved dataset to: data/modeling_dataset_ultrarealistic.csv
+2025-11-17 18:31:05,651 INFO: Evaluating baseline (majority class)...
+2025-11-17 18:31:06,072 INFO: Baseline majority mean metrics: {'acc': 0.7333333333333333, 'precision': 0.0, 'recall': 0.0, 'f1': 0.0}
+2025-11-17 18:31:06,080 INFO: Evaluating Logistic Regression baseline (LOUO foldwise)...
+2025-11-17 18:31:07,040 INFO: LogReg mean metrics (foldwise): {'acc': 0.92, 'precision': 0.68, 'recall': 0.72, 'f1': 0.6933333333333332}
+2025-11-17 18:31:07,045 INFO: Starting GridSearchCV for Random Forest (this may take a while)...
+2025-11-17 18:41:33,377 INFO: GridSearch best params: {'max_depth': None, 'min_samples_leaf': 1, 'min_samples_split': 2, 'n_estimators': 200}
+2025-11-17 18:41:33,378 INFO: Evaluating tuned Random Forest under LOUO...
+2025-11-17 18:41:48,248 INFO: Saved tuned RF to: data/tuned_random_forest_model.joblib
+2025-11-17 18:41:48,258 INFO: Saved logistic regression baseline to: data/logistic_regression_baseline.joblib
+2025-11-17 18:41:48,265 INFO: Saved model metadata to: data/model_metadata.json
+2025-11-17 18:42:01,996 INFO: Saved outputs to: data
+2025-11-17 18:42:01,998 INFO:  - Dataset: data/modeling_dataset_ultrarealistic.csv
+2025-11-17 18:42:01,999 INFO:  - RF fold metrics: data/rf_fold_metrics_ultrarealistic.csv
+2025-11-17 18:42:02,000 INFO:  - RF summary: data/rf_summary_ultrarealistic.csv
+2025-11-17 18:42:02,001 INFO:  - Feature importances: data/feature_importances_ultrarealistic_summary.csv
+2025-11-17 18:42:02,002 INFO:  - Model comparison CSV: data/model_comparison_ultrarealistic.csv
+2025-11-17 18:42:02,004 INFO:  - Trained RF model: data/tuned_random_forest_model.joblib
+2025-11-17 18:42:02,005 INFO:  - Trained LogReg model: data/logistic_regression_baseline.joblib
+2025-11-17 18:42:02,006 INFO:  - Model metadata: data/model_metadata.json
+2025-11-17 18:42:02,008 INFO:  - Plots: ['data/tlx_hist_ultrarealistic.png', 'data/roc_curves.png', 'data/feature_importances_ultrarealistic.png', 'data/model_comparison.png', 'data/precision_recall_foldwise.png', 'data/confusion_matrices_louo.png']
+2025-11-17 18:42:02,010 INFO:  - Log file: data/modeling_log.txt

@@ -1,0 +1,6 @@
+metric,baseline_majority,logistic_regression,tuned_random_forest
+acc,0.7333333333333333,0.92,0.96
+precision,0.0,0.68,0.68
+recall,0.0,0.72,0.66
+f1,0.0,0.6933333333333332,0.6666666666666665
+roc_auc,,,0.9473684210526315

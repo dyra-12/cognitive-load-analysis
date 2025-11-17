@@ -1,0 +1,73 @@
+{
+  "generated_at": "2025-11-17T18:41:48.263130+00:00",
+  "random_state": 2025,
+  "n_participants": 25,
+  "n_rows": 75,
+  "feature_names": [
+    "form_hesitation_index",
+    "form_error_rate",
+    "form_efficiency",
+    "zip_code_struggle",
+    "filter_optimization_score",
+    "decision_uncertainty",
+    "exploration_breadth",
+    "planning_time_ratio",
+    "multitasking_load",
+    "constraint_violation_rate",
+    "budget_management_stress",
+    "scheduling_difficulty",
+    "recovery_efficiency",
+    "action_density",
+    "idle_time_ratio",
+    "mouse_entropy_avg",
+    "rapid_hovers",
+    "drag_attempts",
+    "trait_skill",
+    "trait_cautious"
+  ],
+  "saved_models": {
+    "tuned_random_forest": "/content/data/tuned_random_forest_model.joblib",
+    "logistic_regression_baseline": "/content/data/logistic_regression_baseline.joblib"
+  },
+  "grid_search_best_params": {
+    "max_depth": null,
+    "min_samples_leaf": 1,
+    "min_samples_split": 2,
+    "n_estimators": 200
+  },
+  "rf_summary_mean": {
+    "acc": 0.96,
+    "precision": 0.68,
+    "recall": 0.66,
+    "f1": 0.6666666666666665,
+    "roc_auc": 0.9473684210526315
+  },
+  "baseline_mean": {
+    "acc": 0.7333333333333333,
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0
+  },
+  "logreg_foldwise_mean": {
+    "acc": 0.92,
+    "precision": 0.68,
+    "recall": 0.72,
+    "f1": 0.6933333333333332
+  },
+  "files": {
+    "dataset_csv": "/content/data/modeling_dataset_ultrarealistic.csv",
+    "rf_fold_metrics_csv": "/content/data/rf_fold_metrics_ultrarealistic.csv",
+    "rf_summary_csv": "/content/data/rf_summary_ultrarealistic.csv",
+    "feature_importances_csv": "/content/data/feature_importances_ultrarealistic_summary.csv",
+    "model_comparison_csv": "/content/data/model_comparison_ultrarealistic.csv",
+    "plots": {
+      "tlx_hist": "/content/data/tlx_hist_ultrarealistic.png",
+      "roc": "/content/data/roc_curves.png",
+      "feat_imp": "/content/data/feature_importances_ultrarealistic.png",
+      "comparison": "/content/data/model_comparison.png",
+      "pr_curves": "/content/data/precision_recall_foldwise.png",
+      "confusion_matrices": "/content/data/confusion_matrices_louo.png"
+    },
+    "log_file": "/content/data/modeling_log.txt"
+  }
+}
