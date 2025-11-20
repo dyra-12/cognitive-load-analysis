@@ -10,15 +10,16 @@ Used by:
  - interpretation
 """
 
-import os
 import json
+import os
 from pathlib import Path
-import pandas as pd
 
+import pandas as pd
 
 # ------------------------------------------------------------------
 # Directory helpers
 # ------------------------------------------------------------------
+
 
 def ensure_dir(path: str):
     """Create directory if it doesn't exist."""
@@ -31,12 +32,21 @@ def ensure_dir(path: str):
 # JSON helpers
 # ------------------------------------------------------------------
 
+
 def read_json(path: str):
     """Safe JSON loader."""
     with open(path, "r") as f:
         return json.load(f)
 
+
 def write_json(path: str, obj, indent=2):
+    """Write Python object to JSON file, creating parent directory if needed.
+
+    Parameters
+    - path: str -- output file path
+    - obj: any -- serializable Python object
+    - indent: int -- JSON indentation
+    """
     ensure_dir(os.path.dirname(path))
     with open(path, "w") as f:
         json.dump(obj, f, indent=indent)
@@ -46,11 +56,13 @@ def write_json(path: str, obj, indent=2):
 # DataFrame helpers
 # ------------------------------------------------------------------
 
+
 def save_df(df: pd.DataFrame, path: str):
     """Save DataFrame to CSV, ensuring directory exists."""
     ensure_dir(os.path.dirname(path))
     df.to_csv(path, index=False)
     return path
+
 
 def load_modeling_csv(path: str):
     """Load modeling dataset + basic checks."""
@@ -65,6 +77,7 @@ def load_modeling_csv(path: str):
 # ------------------------------------------------------------------
 # Raw file discovery
 # ------------------------------------------------------------------
+
 
 def list_json_files(directory: str):
     """Recursively list all JSON files."""

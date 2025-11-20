@@ -12,11 +12,12 @@ Usage:
     python load_data.py --raw-dir ../../data/raw_matching_dataset --list
 """
 
-import os
-import json
 import argparse
+import json
+import os
 from pathlib import Path
-from typing import Dict, List, Any
+from typing import Any, Dict, List
+
 import pandas as pd
 
 
@@ -31,11 +32,28 @@ def list_raw_files(raw_dir: str):
 
 
 def load_json_file(path: str) -> Dict:
+    """Load a single JSON file and return the parsed object.
+
+    Parameters
+    - path: str -- path to a JSON file
+
+    Returns
+    - dict: parsed JSON content
+    """
+
     with open(path, "r") as f:
         return json.load(f)
 
 
 def load_all_raw(raw_dir: str) -> List[Dict]:
+    """Load all JSON files found under `raw_dir`.
+
+    Parameters
+    - raw_dir: str -- root directory to recurse for JSON files
+
+    Returns
+    - list[dict]: list of parsed JSON objects, each annotated with `_source_file` path
+    """
     files = list_raw_files(raw_dir)
     data = []
     for p in files:
@@ -58,9 +76,10 @@ def to_dataframe(raw_objects: List[Dict]) -> pd.DataFrame:
         row = {
             "participantId": obj.get("participantId"),
             "task": obj.get("task") or obj.get("task_id"),
-            "raw_tlx": obj.get("raw_tlx") or (obj.get("tlx_scores") and obj["tlx_scores"].get("raw_tlx")),
+            "raw_tlx": obj.get("raw_tlx")
+            or (obj.get("tlx_scores") and obj["tlx_scores"].get("raw_tlx")),
             "computed_metrics": obj.get("computed_metrics"),
-            "_source_file": obj.get("_source_file")
+            "_source_file": obj.get("_source_file"),
         }
         rows.append(row)
     return pd.DataFrame(rows)
@@ -68,10 +87,18 @@ def to_dataframe(raw_objects: List[Dict]) -> pd.DataFrame:
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--raw-dir", type=str, default="../../data/raw_matching_dataset",
-                        help="Path to raw JSON folder (root)")
-    parser.add_argument("--out-csv", type=str, default=None,
-                        help="Optionally write a summary CSV listing all raw files")
+    parser.add_argument(
+        "--raw-dir",
+        type=str,
+        default="../../data/raw_matching_dataset",
+        help="Path to raw JSON folder (root)",
+    )
+    parser.add_argument(
+        "--out-csv",
+        type=str,
+        default=None,
+        help="Optionally write a summary CSV listing all raw files",
+    )
     args = parser.parse_args()
 
     files = list_raw_files(args.raw_dir)

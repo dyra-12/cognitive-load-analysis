@@ -16,17 +16,22 @@ Usage:
         --outdir ../../results/interpretation
 """
 
-import os
-import json
 import argparse
+import json
+import os
+
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from sklearn.cluster import KMeans
 from sklearn.decomposition import PCA
-import matplotlib.pyplot as plt
 
 
 def main():
+    """Load SHAP arrays and cluster SHAP vectors (KMeans), saving labels and a PCA plot.
+
+    This helps identify groups of examples with similar model explanations.
+    """
     parser = argparse.ArgumentParser()
     parser.add_argument("--shap-values", type=str, required=True)
     parser.add_argument("--features", type=str, required=True)
@@ -39,7 +44,7 @@ def main():
     shap_values = np.load(args.shap_values)
     df = pd.read_csv(args.csv)
 
-    # K-means clustering on SHAP vectors
+    # K-means clustering on SHAP vectors (simple 2-cluster separation)
     kmeans = KMeans(n_clusters=2, random_state=2025)
     labels = kmeans.fit_predict(shap_values)
 

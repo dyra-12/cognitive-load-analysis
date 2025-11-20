@@ -15,16 +15,23 @@ Usage:
         --outdir ../../results/interpretation
 """
 
-import os
-import json
 import argparse
+import json
+import os
+
+import joblib
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import shap
-import matplotlib.pyplot as plt
-import joblib
+
 
 def main():
+    """Compute and save SHAP values and summary plots for a trained RF pipeline.
+
+    Expects a scikit-learn `Pipeline` with steps `imputer`, `scaler`, and `rf`.
+    Saves raw SHAP arrays and common summary visualizations into `--outdir`.
+    """
     parser = argparse.ArgumentParser()
     parser.add_argument("--model", type=str, required=True)
     parser.add_argument("--csv", type=str, required=True)
@@ -41,8 +48,16 @@ def main():
     model = joblib.load(args.model)
 
     print("Computing SHAP values (TreeExplainer)...")
+    # TreeExplainer accepts the underlying fitted tree model (RandomForest estimator).
+    # We compute SHAP values on the transformed feature matrix (imputer -> scaler)
+    # because the RF was trained on the pipeline's output.
     explainer = shap.TreeExplainer(model.named_steps["rf"])
-    shap_values = explainer.shap_values(model.named_steps["scaler"].transform(model.named_steps["imputer"].transform(X)))[1]
+    transformed_X = model.named_steps["scaler"].transform(
+        model.named_steps["imputer"].transform(X)
+    )
+    # shap_values for binary classifiers are returned as an array for each class;
+    # index [1] corresponds to the positive class explanations.
+    shap_values = explainer.shap_values(transformed_X)[1]
 
     # Save SHAP data
     np.save(os.path.join(args.outdir, "shap_values.npy"), shap_values)

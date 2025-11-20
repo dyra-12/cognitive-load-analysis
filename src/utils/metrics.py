@@ -12,16 +12,16 @@ Functions:
 import numpy as np
 from sklearn.metrics import (
     accuracy_score,
+    f1_score,
     precision_score,
     recall_score,
-    f1_score,
-    roc_auc_score
+    roc_auc_score,
 )
-
 
 # ------------------------------------------------------------------
 # Fold-level metrics
 # ------------------------------------------------------------------
+
 
 def compute_fold_metrics(y_true, y_pred, y_score=None):
     """Compute metrics for a single fold, safely handling edge cases."""
@@ -47,6 +47,7 @@ def compute_fold_metrics(y_true, y_pred, y_score=None):
 # Aggregation
 # ------------------------------------------------------------------
 
+
 def aggregate_metrics(fold_df):
     """Return {metric_name: value} for mean ± std across folds."""
     summary = {}
@@ -54,7 +55,7 @@ def aggregate_metrics(fold_df):
         if col in fold_df:
             summary[col] = {
                 "mean": float(fold_df[col].mean()),
-                "std": float(fold_df[col].std())
+                "std": float(fold_df[col].std()),
             }
     return summary
 
@@ -63,16 +64,19 @@ def aggregate_metrics(fold_df):
 # Misclassification tracking
 # ------------------------------------------------------------------
 
+
 def collect_misclassifications(y_true, y_pred, fold_id, left_out_id):
     """Return list of misclassified sample info."""
     records = []
     for i, (yt, yp) in enumerate(zip(y_true, y_pred)):
         if int(yt) != int(yp):
-            records.append({
-                "fold": fold_id,
-                "left_out": left_out_id,
-                "true": int(yt),
-                "pred": int(yp),
-                "index": i
-            })
+            records.append(
+                {
+                    "fold": fold_id,
+                    "left_out": left_out_id,
+                    "true": int(yt),
+                    "pred": int(yp),
+                    "index": i,
+                }
+            )
     return records

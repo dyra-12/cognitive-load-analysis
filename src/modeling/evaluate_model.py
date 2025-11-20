@@ -11,15 +11,32 @@ Functions:
 """
 
 import os
+from typing import Any, Dict, List
+
+import joblib
 import numpy as np
 import pandas as pd
+from sklearn.metrics import (
+    accuracy_score,
+    f1_score,
+    precision_score,
+    recall_score,
+    roc_auc_score,
+)
 from sklearn.model_selection import LeaveOneGroupOut
-from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score
-from typing import List, Dict, Any
-import joblib
 
 
 def fold_metrics(y_true, y_pred, y_score=None):
+    """Compute a small dictionary of common classification metrics for a fold.
+
+    Parameters
+    - y_true: array-like -- true labels
+    - y_pred: array-like -- predicted labels
+    - y_score: array-like or None -- scores for ROC AUC if available
+
+    Returns
+    - dict: contains accuracy, precision_pos, recall_pos, f1_pos, and roc_auc
+    """
     m = {}
     m["accuracy"] = float(accuracy_score(y_true, y_pred))
     m["precision_pos"] = float(precision_score(y_true, y_pred, zero_division=0))
@@ -35,7 +52,13 @@ def fold_metrics(y_true, y_pred, y_score=None):
     return m
 
 
-def evaluate_louo(model, df: pd.DataFrame, feature_cols: List[str], group_col: str = "participantId", target_col: str = "High_Load"):
+def evaluate_louo(
+    model,
+    df: pd.DataFrame,
+    feature_cols: List[str],
+    group_col: str = "participantId",
+    target_col: str = "High_Load",
+):
     """
     Evaluate a fitted sklearn-like model under LOUO.
     model: fitted estimator with predict and predict_proba or decision_function
@@ -83,12 +106,14 @@ def evaluate_louo(model, df: pd.DataFrame, feature_cols: List[str], group_col: s
         # record misclassifications for analysis
         for i, yi in enumerate(y_test):
             if yi != int(y_pred[i]):
-                mis_list.append({
-                    "left_out": left_out,
-                    "test_idx_in_group": i,
-                    "true": int(yi),
-                    "pred": int(y_pred[i])
-                })
+                mis_list.append(
+                    {
+                        "left_out": left_out,
+                        "test_idx_in_group": i,
+                        "true": int(yi),
+                        "pred": int(y_pred[i]),
+                    }
+                )
 
         fold += 1
 
@@ -98,6 +123,7 @@ def evaluate_louo(model, df: pd.DataFrame, feature_cols: List[str], group_col: s
 
 
 def save_fold_metrics_csv(metrics_df: pd.DataFrame, out_path: str):
+    """Save a fold-level metrics DataFrame to CSV, creating directories as needed."""
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
     metrics_df.to_csv(out_path, index=False)
     print("Saved fold metrics CSV:", out_path)
@@ -133,9 +159,14 @@ def save_feature_importances(model, feature_cols: List[str], out_path: str):
 
 if __name__ == "__main__":
     import argparse
+
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model", type=str, default="../../models/tuned_random_forest_model.joblib")
-    parser.add_argument("--csv", type=str, default="../../data/processed/modeling_dataset.csv")
+    parser.add_argument(
+        "--model", type=str, default="../../models/tuned_random_forest_model.joblib"
+    )
+    parser.add_argument(
+        "--csv", type=str, default="../../data/processed/modeling_dataset.csv"
+    )
     parser.add_argument("--outdir", type=str, default="../../results/modeling")
     args = parser.parse_args()
 
@@ -146,7 +177,15 @@ if __name__ == "__main__":
     model = joblib.load(os.path.abspath(args.model))
     folds_df, summary, mis = evaluate_louo(model, df, feature_cols)
     os.makedirs(args.outdir, exist_ok=True)
-    folds_df.to_csv(os.path.join(args.outdir, "rf_fold_metrics_ultrarealistic.csv"), index=False)
-    pd.DataFrame([summary]).to_csv(os.path.join(args.outdir, "rf_summary_ultrarealistic.csv"), index=False)
-    save_feature_importances(model, feature_cols, os.path.join(args.outdir, "feature_importances_ultrarealistic_summary.csv"))
+    folds_df.to_csv(
+        os.path.join(args.outdir, "rf_fold_metrics_ultrarealistic.csv"), index=False
+    )
+    pd.DataFrame([summary]).to_csv(
+        os.path.join(args.outdir, "rf_summary_ultrarealistic.csv"), index=False
+    )
+    save_feature_importances(
+        model,
+        feature_cols,
+        os.path.join(args.outdir, "feature_importances_ultrarealistic_summary.csv"),
+    )
     print("Saved evaluation outputs to", args.outdir)

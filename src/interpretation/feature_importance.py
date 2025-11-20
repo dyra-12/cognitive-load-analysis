@@ -13,15 +13,20 @@ Usage:
         --outdir ../../results/interpretation
 """
 
-import os
 import argparse
+import os
+
+import joblib
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-import joblib
 
 
 def main():
+    """Extract and save Random Forest feature importances and a horizontal bar plot.
+
+    Expects a fitted `Pipeline` with a `rf` step accessible via `named_steps`.
+    """
     parser = argparse.ArgumentParser()
     parser.add_argument("--model", type=str, required=True)
     parser.add_argument("--csv", type=str, required=True)
@@ -38,10 +43,9 @@ def main():
     rf = model.named_steps["rf"]
 
     importances = rf.feature_importances_
-    fi = pd.DataFrame({
-        "feature": feature_cols,
-        "importance": importances
-    }).sort_values("importance", ascending=False)
+    fi = pd.DataFrame({"feature": feature_cols, "importance": importances}).sort_values(
+        "importance", ascending=False
+    )
 
     # Save CSV
     fi.to_csv(os.path.join(args.outdir, "feature_importances.csv"), index=False)
