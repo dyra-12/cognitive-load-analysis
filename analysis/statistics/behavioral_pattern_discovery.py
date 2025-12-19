@@ -130,18 +130,19 @@ def run(csv_path, out_dir):
 
     # APA-style interpretation text
     lines = []
-    lines.append("Behavioral Pattern Discovery — APA-style interpretation\\n")
-    lines.append("Overall strongest correlations with NASA-TLX (Pearson r):\\n")
+    lines.append("Behavioral Pattern Discovery — APA-style interpretation\n")
+    lines.append("Overall strongest correlations with NASA-TLX (Pearson r):\n")
     for i, row in pearson_df.head(8).iterrows():
-        feat = row['feature']; r = row['pearson_r']; p = row['pearson_p']
+        feat = row['feature']
+        r = row['pearson_r']
+        p = row['pearson_p']
         direction = 'positively' if r > 0 else 'negatively'
-        lines.append(f\"- {feat}: {direction} correlated with TLX (r = {r:.2f}, p = {p:.3g})\\n\")
-    lines.append("\\nPer-task observations:\\n")
+        lines.append(f"- {feat}: {direction} correlated with TLX (r = {r:.2f}, p = {p:.3g})\n")
+    lines.append("\nPer-task observations:\n")
     for feat in top_features:
         per = per_task_df[per_task_df['feature']==feat].set_index('task_id')['pearson_r'].to_dict()
-        lines.append(f\"- {feat}: per-task r -> {json.dumps(per)}\\n\")
-    lines.append('\\nNotes: dataset is synthetic; validate with real-users for publication.\\n')
-    (out_dir / "interpretation_apa.txt").write_text('\\n'.join(lines))
+        lines.append(f"- {feat}: per-task r -> {json.dumps(per)}\n")
+    (out_dir / "interpretation_apa.txt").write_text(''.join(lines))
 
     # Zip figures
     zip_path = out_dir / "figures_package.zip"

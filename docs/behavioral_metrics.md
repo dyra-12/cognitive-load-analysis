@@ -4,6 +4,10 @@ _A comprehensive interpretation of behavioral, cognitive, and machine-learning f
 
 ---
 
+> **Note:** Scenario analyses and threshold values are interpretive design recommendations derived from empirical patterns, not prescriptive or universally optimal rules. Thresholds represent heuristic guidelines informed by observed feature distributions rather than statistically optimized decision boundaries.
+
+---
+
 ## 1. Overview
 
 This report summarizes key findings from the cognitive load study across three tasks:
@@ -47,7 +51,7 @@ These features were the strongest indicators of cognitive load in both statistic
 | 4 | `multitasking_load` | **0.73** | Strong 🔥 | Excessive component switching |
 | 5 | `drag_attempts` | **0.66** | Strong 🔥 | Repeated failing drag operations |
 
-**Key Insight:** These metrics peaked in Task 3, reinforcing its role as the high-load condition. The top three features collectively explain **~68% of TLX variance**.
+**Key Insight:** These metrics peaked in Task 3, reinforcing its role as the high-load condition. The top three features show strong shared alignment with TLX scores and collectively dominate both correlation and SHAP-based importance analyses.
 
 ---
 
@@ -81,13 +85,15 @@ Global feature importance from the machine learning model (higher = stronger inf
 9. form_hesitation_index          ███                   (3.5%)
 ```
 
-**Top 3 features explain 58.2% of model predictions**
+**Top 3 features account for over half of the model's total SHAP importance mass (58.2%), indicating their dominant influence on predictions**
 
 ---
 
 ## 3. UX Design Guidelines (Metric-Driven)
 
 ### 3.1 High-Load Alert Thresholds
+
+These thresholds are empirically informed heuristics, derived from observed feature distributions and SHAP impact ranges, rather than statistically optimized decision boundaries.
 
 When these thresholds are exceeded, the system should trigger adaptive UI interventions:
 
@@ -477,6 +483,8 @@ These scenarios simulate how the behavioral model reacts to observable user patt
 
 ### 6.2 Confusion Matrix (Random Forest)
 
+**Aggregated confusion matrix across LOUO folds (representative)**
+
 ```
                   Predicted
                 Low    High
@@ -490,7 +498,7 @@ Actual   Low    [45]   [2]
 - **False Negatives (3):** High load misclassified as low (4.0% error)
 - **True Positives (25):** Correctly identified high load
 
-**Clinical Significance:** False negatives are rare (3 cases), meaning the model reliably catches struggling users.
+**Interaction-Design Significance:** False negatives are rare (3 cases), meaning the model reliably catches struggling users.
 
 ---
 
@@ -545,6 +553,5 @@ Actual   Low    [45]   [2]
 - **If P(high load) > 50%:** Monitor closely, prepare assistance
 
 **Step 5: Log & Learn**
-- Record intervention effectiveness
-- Retrain model with new behavioral data
-
+- Log intervention effectiveness for offline analysis and future model refinement
+- Periodic model retraining with accumulated behavioral data

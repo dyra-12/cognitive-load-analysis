@@ -2,14 +2,14 @@
 """
 load_data.py
 
-Utilities to load raw JSON logs from data/raw or data/raw_matching_dataset.
+Utilities to load raw JSON logs from data/raw.
 Provides functions to:
  - load all raw jsons into a list/dict
  - create a simple DataFrame view
  - read per-task files
 
 Usage:
-    python load_data.py --raw-dir ../../data/raw_matching_dataset --list
+    python load_data.py --raw-dir ../../data/raw --list
 """
 
 import argparse
@@ -90,7 +90,7 @@ def main():
     parser.add_argument(
         "--raw-dir",
         type=str,
-        default="../../data/raw_matching_dataset",
+        default="../../data/raw",
         help="Path to raw JSON folder (root)",
     )
     parser.add_argument(

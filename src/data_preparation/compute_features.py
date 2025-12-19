@@ -11,7 +11,7 @@ Outputs:
  - ./data/processed/modeling_dataset.csv
 
 Usage:
-    python compute_features.py --raw-dir ../../data/raw_matching_dataset --out-csv ../../data/processed/modeling_dataset.csv
+    python compute_features.py --raw-dir ../../data/raw --out-csv ../../data/processed/modeling_dataset.csv
 """
 
 import argparse
@@ -262,7 +262,7 @@ def main():
     parser.add_argument(
         "--raw-dir",
         type=str,
-        default="../../data/raw_matching_dataset",
+        default="../../data/raw",
         help="Directory containing raw JSONs",
     )
     parser.add_argument(

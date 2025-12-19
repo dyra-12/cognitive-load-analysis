@@ -4,29 +4,31 @@ This folder contains comprehensive research documentation covering methodology, 
 
 ## Contents
 
-### 📖 Overview & Methodology
-- `overview.md` - High-level project overview and objectives
-- `methodology.md` - Detailed research methodology and experimental design
-- `reproducibility.md` - Instructions for reproducing experiments
+### 📖 Core Documentation
+- [methodology.md](methodology.md) - Detailed research methodology and experimental design
+- [reproducibility.md](reproducibility.md) - Instructions for reproducing experiments
+- [system_architecture.md](system_architecture.md) - System architecture and design overview
 
 ### 🔬 Research Insights
-- `ML_Insights.md` - Machine learning model findings and performance analysis
-- `SHAP_Insights.md` - Feature importance and SHAP explainability insights
-- `insights.md` - General research insights and discoveries
-- `feature_correlation_summary.md` - Feature-TLX correlation analysis
+- [ML_Insights.md](ML_Insights.md) - Machine learning model findings and performance analysis
+- [SHAP_Insights.md](SHAP_Insights.md) - Feature importance and SHAP explainability insights
+- [behavioral_metrics.md](behavioral_metrics.md) - Behavioral metrics and feature analysis
+- [feature_correlation_summary.md](feature_correlation_summary.md) - Feature-TLX correlation analysis
 
 ### 🎨 Design Implications
-- `insights_and_design_implications.md` - Practical UX design recommendations based on findings
+- [insights_and_implications.md](insights_and_implications.md) - Practical UX design recommendations based on findings
 
 ### ⚖️ Validity & Ethics
-- `threats_to_validity.md` - Limitations and potential biases
-- `ethics_statement.md` - Ethical considerations and data handling
+- [threats_to_validity.md](threats_to_validity.md) - Limitations and potential biases
+- [ethics_statement.md](ethics_statement.md) - Ethical considerations and data handling
 
 ### 📚 Reference Materials
-- `refrences.md` - Citations and related work
+- [refrences.md](refrences.md) - Citations and related work
+
+### 📊 Visual Resources
 - `system_architecture.png` - System architecture diagram
 - `thesis_phase_flowchart.png` - Research phase workflow
 
 ## Navigation
 
-Start with [overview.md](overview.md) for context, then explore [methodology.md](methodology.md) for technical details, and [insights_and_design_implications.md](insights_and_design_implications.md) for practical applications.
+Start with [methodology.md](methodology.md) for technical details and experimental design, then explore [ML_Insights.md](ML_Insights.md) and [SHAP_Insights.md](SHAP_Insights.md) for model analysis, and [insights_and_implications.md](insights_and_implications.md) for practical applications.

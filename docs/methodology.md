@@ -70,7 +70,7 @@ This threshold aligns with prior cognitive-state classification research.
 
 ### 3.1 Raw Event Aggregation
 
-Low-level browser events were grouped into temporal windows to compute higher-level behavioral indicators. Key computed metrics included:
+Low-level browser events were grouped into temporal windows to compute higher-level behavioral indicators. Feature values were computed over rolling windows to support both offline analysis and real-time inference consistency. Key computed metrics included:
 
 | Metric | Description |
 |--------|-------------|
@@ -155,11 +155,11 @@ Binary classification:
 | **F1-Score** | 0.00 | 0.69 | 0.82 |
 | **ROC-AUC** | 0.50 | 0.89 | 0.95 |
 
-The Random Forest achieved the best balance between accuracy, interpretability, and latency (<400 ms).
+The Random Forest achieved the best balance between predictive performance, interpretability (via SHAP), and real-time feasibility (<400 ms latency).
 
 ## 6. Interpretability and Validation
 
-- **Global SHAP:** Top contributors → `constraint_violation_rate`, `budget_management_stress`, `idle_time_ratio`.
+- **Global SHAP:** Top contributors → `scheduling_difficulty`, `constraint_violation_rate`, `budget_management_stress`, and `idle_time_ratio`.
 - **Local SHAP:** Trial-level explanations highlighting individual differences (e.g., over-reporters vs. under-reporters).
 - **SHAP Clustering:** Revealed two user archetypes —
   - **High-load:** conflict-heavy, erratic, slow.
@@ -170,7 +170,8 @@ The Random Forest achieved the best balance between accuracy, interpretability, 
 - Only anonymized behavioral data were recorded.
 - No raw content, keystrokes, or identifiable information stored.
 - Participants could withdraw at any point.
-- IRB approval obtained before data collection.
+- The study was classified as IRB-exempt (minimal-risk behavioral research).
+- Institutional ethics screening confirmed exemption status prior to data collection.
 
 ## 8. Summary
 
@@ -188,5 +189,5 @@ The methodology ensures reproducibility, interpretability, and ethical complianc
 
 ### ✅ See also:
 
-- `docs/overview.md` — system architecture and design principles
+- `docs/system_architecture.md` — system architecture and design principles
 - `docs/ML_Insights.md` — model analysis, SHAP visualizations, and performance evaluation

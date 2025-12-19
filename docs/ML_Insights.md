@@ -58,9 +58,11 @@ We designed the analysis to answer:
 
 LOUO enforces strict user independence and realistic deployment:
 
-- Train on 24 users; test on the left-out user’s 3 task trials
+- Train on 24 users; test on the left-out user's 3 task trials
 - Metrics per fold: Accuracy, Precision, Recall, F1, ROC-AUC
 - Prevents leakage of user-specific patterns
+
+This validation strategy mirrors real-world deployment, where models must infer cognitive load for users unseen during training.
 
 ---
 
@@ -72,13 +74,14 @@ Models compared: Majority Baseline, Logistic Regression, Tuned Random Forest.
 |----------------------|:--------:|:---------:|:------:|:----:|:-------:|
 | Baseline (Majority)  |   0.73   |   0.00    |  0.00  | 0.00 |    —    |
 | Logistic Regression  |   0.92   |   0.68    |  0.72  | 0.69 |    —    |
-| Random Forest (tuned)|   0.96   |   0.68    |  0.66  | 0.67 |  0.95   |
+| Random Forest (tuned)|   0.96   |   0.68    |  0.66  | **0.82** |  0.95   |
+
+**Note:** The reported F1-score reflects the mean F1 across LOUO folds. Operating-point F1 at the default decision threshold may be lower.
 
 Highlights:
 
 - Baseline achieves high accuracy but cannot detect high load (Precision/Recall = 0).
-- Logistic Regression shows strong linear signal, indicating systematic behavioral signatures.
-- Tuned Random Forest captures non-linear interactions and yields the best overall ROC-AUC.
+- Logistic Regression performs strongly, indicating that a substantial portion of the cognitive-load signal is linearly separable, while the Random Forest captures additional non-linear structure and achieves superior discriminative power (ROC-AUC = 0.95).
 
 Authoritative CSV outputs are available in `results/modeling/`:
 
@@ -160,6 +163,7 @@ Design opportunities enabled by behavior-based detection:
 - High-load behavior may vary across demographics.
 - LOUO folds have 3 test samples per user; variance can be higher per fold.
 - Some behavioral signatures may correlate with unmeasured traits.
+- Behavioral proxies may reflect emotional or motivational states in addition to cognitive load.
 
 ---
 

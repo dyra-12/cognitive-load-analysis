@@ -17,7 +17,6 @@ SHAP explainability visualizations:
 - `shap_summary_bar.png` - Mean absolute SHAP values
 - `shap_clusters_pca.png` - PCA visualization of SHAP clusters
 - `shap_waterfall_idx_*.png` - Individual prediction explanations
-- `shap_force_idx_0.html` - Interactive force plot
 
 ### 📊 `TLX/`
 NASA-TLX analysis visualizations:

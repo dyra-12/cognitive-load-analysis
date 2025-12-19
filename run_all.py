@@ -33,7 +33,7 @@ import logging
 REPO_ROOT = Path(__file__).resolve().parent
 SRC_DIR = REPO_ROOT / "src"
 DATA_DIR = REPO_ROOT / "data"
-RAW_MATCH_DIR = DATA_DIR / "raw_matching_dataset"
+RAW_MATCH_DIR = DATA_DIR / "raw"
 PROCESSED_DIR = DATA_DIR / "processed"
 MODELS_DIR = REPO_ROOT / "models"
 RESULTS_DIR = REPO_ROOT / "results"

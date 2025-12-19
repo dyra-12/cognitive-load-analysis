@@ -16,6 +16,8 @@ Python 3.10+
 
 ### 1.2 Install Dependencies
 
+For full reproducibility, we recommend using a virtual environment (e.g., `venv` or `conda`) before installing dependencies.
+
 Run:
 ```bash
 pip install -r requirements.txt
@@ -26,9 +28,14 @@ pip install -r requirements.txt
 - `scikit-learn`
 - `scipy` & `statsmodels` (ANOVA + post-hoc tests)
 - `shap`
-- `matplotlib` & `seaborn`
+- `matplotlib` (primary plotting)
+- `seaborn` (optional, for correlation heatmaps)
 - `jupyter notebook`
 - `tqdm`
+
+### 1.3 Compute Requirements
+
+All experiments were run on a standard laptop-class CPU; no GPU is required.
 
 ---
 
@@ -42,6 +49,8 @@ data/raw/
    task2_product/
    task3_travel/
 ```
+
+**Note:** Depending on ethics and consent constraints, raw interaction logs may not be publicly distributed. When unavailable, example schemas and processed feature tables are provided to enable full pipeline execution.
 
 ### Example schemas
 ```
@@ -235,11 +244,7 @@ To regenerate all visualizations:
 python run_all.py
 ```
 
-**This runs**:
-- Data preprocessing
-- Modeling
-- SHAP analysis
-- All plots
+This script sequentially executes the full pipeline from raw data ingestion through figure generation.
 
 ---
 
@@ -272,7 +277,7 @@ jupyter notebook
 | Baselines | ✔️ | `baselines.py` |
 | SHAP global & local | ✔️ | `shap_analysis.py` |
 | SHAP clustering | ✔️ | `shap_clustering.py` |
-| Adaptive UI examples | Semi | mockups + demo folder |
+| Adaptive UI examples | Semi | UI logic reproducible; demo interactions illustrative |
 | All figures | ✔️ | `run_all.py` |
 
 ---
@@ -287,12 +292,9 @@ jupyter notebook
 
 ## 12. Contact
 
-For issues or reproducibility questions:
-
-**Dyra**  
-*(Add your GitHub or email if desired)*
+For reproducibility-related questions, please open a GitHub Issue.
 
 ---
 
-**Last Updated**: November 2025  
+**Last Updated**: December 2025  
 **Version**: 1.0
