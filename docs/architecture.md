@@ -240,23 +240,7 @@ By treating cognitive load as an emergent interaction phenomenon rather than a s
 
 ---
 
-## 9. Limitations and Extensions
-
-- Current deployment targets browser-based interaction  
-- Cognitive load is operationalized as a binary construct  
-- Dataset size reflects controlled experimental depth  
-
-Planned extensions include:
-
-- Continuous and multidimensional load modeling  
-- Temporal sequence models  
-- Mobile and touch-based interaction support  
-- Optional multimodal calibration (e.g., eye-tracking)  
-- Designer-facing visualization tools  
-
----
-
-## 10. Summary
+## 9. Summary
 
 CogniViz implements a real-time, interpretable, and deployable cognitive load inference architecture grounded in natural interaction behavior. By uniting behavioral telemetry, explainable machine learning, and adaptive interface control within a single end-to-end pipeline, the system demonstrates a practical foundation for cognitively aware interactive systems that respond intelligently to users’ mental state without intrusive sensing.
 

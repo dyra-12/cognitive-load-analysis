@@ -208,15 +208,15 @@ SHAP quantifies:
 
 This ensures additive completeness:
 
-\[
+$$
 f(x) = \phi_0 + \sum_{i=1}^{N} \phi_i
-\]
+$$
 
 Where:
 
-- \( f(x) \) is the model prediction  
-- \( \phi_0 \) is the base value  
-- \( \phi_i \) is the SHAP value of feature \( i \)  
+- $f(x)$ is the model prediction  
+- $\phi_0$ is the base value  
+- $\phi_i$ is the SHAP value of feature $i$  
 
 ---
 
@@ -318,31 +318,10 @@ The modeling stack reflects four guiding principles:
 2. **Generalization over personalization**  
 3. **Interpretability over opacity**  
 4. **Real-time feasibility over maximal complexity**  
-
+ 
 ---
 
-## 13. Limitations
-
-- Binary operationalization of cognitive load  
-- Modest dataset size  
-- No temporal sequence modeling  
-- Browser-only interaction modality  
-
----
-
-## 14. Extensions
-
-Planned modeling extensions:
-
-- Continuous regression of cognitive load  
-- Multidimensional load components  
-- Temporal sequence models (HMMs, RNNs)  
-- Domain adaptation  
-- Multimodal calibration  
-
----
-
-## 15. Summary
+## 13. Summary
 
 The CogniViz model demonstrates that cognitive load can be inferred from natural interaction behavior alone using a nonlinear, interpretable machine learning architecture. By integrating TreeSHAP explanations directly into the inference pipeline, CogniViz treats interpretability as infrastructure rather than a post-hoc diagnostic, enabling explanation-driven adaptive interface behavior in real time.
 

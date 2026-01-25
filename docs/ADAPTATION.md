@@ -374,30 +374,8 @@ The adaptation design reflects five guiding constraints:
 
 ---
 
-## 11. Limitations
 
-- Adaptation logic is rule-based  
-- Binary cognitive load state  
-- Browser-only deployment  
-- Task-specific heuristics  
-- No reinforcement learning  
-
----
-
-## 12. Planned Extensions
-
-Future adaptation research directions:
-
-- Continuous load states  
-- Multidimensional load components  
-- Temporal sequence models  
-- User-personalized adaptation profiles  
-- Reinforcement learning policies  
-- Collaborative adaptation  
-
----
-
-## 13. Summary
+## 11. Summary
 
 The CogniViz Adaptation Engine operationalizes cognitive load inference into a human-centered, explanation-driven UI control system. By grounding interventions in sustained behavioral evidence and aligning responses with psychological theory, CogniViz demonstrates how adaptive interfaces can support cognition without undermining autonomy, trust, or productive effort.
 
