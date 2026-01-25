@@ -30,6 +30,8 @@ Mean TLX scores by task:
 | Product Exploration   | ~45      | Medium     |
 | Travel Planning       | ~72      | High       |
 
+![NASA-TLX distributions by task](../figures/TLX/tlx_hist_ultrarealistic.png)
+
 The distributions exhibited a clear monotonic increase in perceived workload from Task 1 to Task 3.
 
 ---
@@ -104,11 +106,15 @@ A Leave-One-User-Out (LOUO) cross-validation protocol was used to evaluate parti
 
 ### 3.1 Model Comparison
 
+![Model performance comparison across models](../figures/modeling/metrics_comparison.png)
+
 | Model                | Accuracy | Precision | Recall | F1   | ROC-AUC |
 |----------------------|----------|-----------|--------|------|---------|
 | Majority Baseline    | 0.73     | 0.05      | 0.02   | 0.03 | 0.50    |
 | Logistic Regression  | 0.92     | 0.68      | 0.72   | 0.69 | 0.84    |
 | Random Forest (tuned)| 0.96     | 0.88      | 0.86   | 0.87 | 0.95    |
+
+![ROC curves under Leave-One-User-Out evaluation](../figures/modeling/roc_curves.png)
 
 ---
 
@@ -125,6 +131,8 @@ The Random Forest model demonstrates strong participant-independent inference un
 ## 4. Error Analysis
 
 Misclassifications were infrequent and concentrated near borderline NASA-TLX values (≈55–62).
+
+![Confusion matrices across Leave-One-User-Out folds](../figures/modeling/confusion_matrices_louo.png)
 
 ---
 
@@ -166,6 +174,10 @@ SHAP (SHapley Additive exPlanations) was used to analyze model behavior.
 
 ### 5.1 Global SHAP Rankings
 
+![Global SHAP feature importance (bar)](../figures/shap/shap_summary_bar.png)
+
+![Global SHAP summary (beeswarm)](../figures/shap/shap_summary_beeswarm.png)
+
 The most influential contributors to high-load predictions were:
 
 1. Budget management stress  
@@ -197,6 +209,8 @@ Some features with strong univariate correlations (e.g., scheduling difficulty) 
 
 Local SHAP analyses decomposed individual predictions into additive feature contributions.
 
+
+
 ---
 
 ### 6.1 High-Load Instances
@@ -209,6 +223,8 @@ Predictions were driven by:
 - Idle time ratio  
 
 These reflect repeated conflict resolution attempts and prolonged planning effort.
+![Local SHAP example (waterfall, idx 0)](../figures/shap/shap_waterfall_idx_0.png)
+
 
 ---
 
@@ -220,6 +236,8 @@ Predictions were dominated by:
 - Form efficiency  
 
 These reflect fluent execution and rapid correction.
+![Local SHAP example (waterfall, idx 10)](../figures/shap/shap_waterfall_idx_10.png)
+
 
 ---
 
@@ -228,13 +246,14 @@ These reflect fluent execution and rapid correction.
 Mixed positive and negative feature contributions reflected competing behavioral signals near the decision threshold.
 
 These instances highlight natural ambiguity in subjective workload reporting.
-
+![Local SHAP example (waterfall, idx 20)](../figures/shap/shap_waterfall_idx_20.png)
 ---
 
 ## 7. Explanation-Based Behavioral Clusters
 
 To examine whether cognitive load manifests through recurring explanation patterns, SHAP attribution vectors were clustered.
 
+![SHAP cluster visualization (PCA)](../figures/shap/shap_clusters_pca.png)
 ---
 
 ### 7.1 Clustering Method
@@ -242,6 +261,8 @@ To examine whether cognitive load manifests through recurring explanation patter
 - SHAP vectors corresponding to the high-load class were extracted  
 - Dimensionality reduction via PCA  
 - K-means clustering (k = 2)  
+
+
 
 ---
 
@@ -326,19 +347,4 @@ The findings support the following principles:
 - Fluent recovery buffers against overload  
 - Interpretability is essential for adaptive interfaces  
 - Adaptation should be proportional and explanation-driven  
-
----
-
-## 11. Limitations
-
-- Modest dataset size  
-- Binary operationalization of cognitive load  
-- Desktop-only interaction  
-- Controlled task environments  
-
----
-
-## 12. Conclusion
-
-The CogniViz results establish that sensor-free, behavior-based cognitive load inference is feasible, interpretable, and deployable in real time. By uniting behavioral modeling, explainable machine learning, and adaptive interface control, the system demonstrates a practical foundation for cognitively aware interactive systems that respond intelligently to users’ mental state.
 
