@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: >-
+  If you use this software, please cite it using the metadata from this file.
+title: >-
+  CogniViz: Real-Time Cognitive Load Detection from Behavioral Interaction Patterns
+type: software
+authors:
+  - name: dyra-12
+url: https://github.com/dyra-12/cognitive-load-analysis
+repository-code: https://github.com/dyra-12/cognitive-load-analysis
+license: MIT
+keywords:
+  - cognitive-load
+  - human-computer-interaction
+  - interaction-telemetry
+  - explainable-ai
+  - shap
+  - machine-learning
+abstract: >-
+  CogniViz is a browser-native, sensor-free framework for real-time cognitive load
+  inference from natural interaction behavior (mouse/keyboard telemetry). It
+  includes feature engineering, participant-independent modeling (LOUO), and
+  SHAP-based interpretability analyses.
